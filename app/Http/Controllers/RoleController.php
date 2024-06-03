@@ -29,6 +29,20 @@ class RoleController extends BaseController
         $roles->name = $request->name;
         $roles->save();
 
+        $permisions = $request->permissions;
+        $rolePermissions = [];
+
+        foreach ($permisions as $permission) {
+            $rolePermission =[
+                'role_id' => $roles->id,
+                'permission_id' => $permission['permissionId'],
+                'is_active' => $permission['is_active']
+            ];
+
+            array_push($rolePermissions, $rolePermission);
+        }
+
+        RolePermission::insert($rolePermissions);
         return $this->sendResponse($roles);
     }
 

@@ -16,7 +16,7 @@ class PaymentMethodController extends BaseController
     function insert(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255|unique:payment_methods',
+            'method' => 'required|string|max:255|unique:payment_methods',
         ]);
 
         if ($validator->fails()) {
@@ -24,7 +24,7 @@ class PaymentMethodController extends BaseController
         }
 
         $methods = new PaymentMethod();
-        $methods->method = $request->name;
+        $methods->method = $request->method;
         $methods->save();
 
         return $this->sendResponse($methods);

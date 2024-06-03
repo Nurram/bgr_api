@@ -35,7 +35,7 @@ class PrivilegeController extends BaseController
     function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255|unique:privileges',
+            'name' => 'required|string|max:255',
             'discountPercent' => 'required|numeric',
         ]);
 

@@ -59,4 +59,12 @@ class UserController extends BaseController
         $user->save();
         return $this->sendResponse();
     }
+
+    function delete(Request $request)
+    {
+        $user = User::whereId($request->id)->first();
+        $user->delete();
+
+        return $this->sendResponse();
+    }
 }
